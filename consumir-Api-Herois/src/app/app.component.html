@@ -1,0 +1,101 @@
+<div class="container">
+  <div class="form">
+    <form action="#">
+      <div class="form-header">
+        <div class="title">
+            <h1>Cadastre-se</h1>
+        </div>
+        <div class="mini-container">
+          <input type="search" placeholder="Digite o nome" [(ngModel)]="_idBuscar">
+          <button class="pesquisar-button" (click)="CarregarHeroisPorId()">Pesquisar</button> 
+      </div>
+
+     </div>
+     <div class="input-group">
+      <div class="input-box">
+          <label for="nomef">Nome:</label>
+          <input id="nome" type="text" name="nomef" placeholder="Digite o nome"  [(ngModel)]="_nome" required>
+      </div>
+
+      <div class="input-box">
+          <label for="heroi">Herói:</label>
+          <input id="heroi" type="text" name="heroi" placeholder="Digite o alter ego" [(ngModel)]="_heroi" required>
+      </div>
+      <div class="input-box">
+          <label for="data">Data de Aniversário</label>
+          <input id="data" type="date" name="data" [(ngModel)]="_data" required>
+      </div>
+
+      <div class="input-box">
+          <label for="altura">Altura:</label>
+          <input id="altura" type="number" name="altura" placeholder="Altura" [(ngModel)]="_altura" required>
+      </div>
+
+      <div class="input-box">
+          <label for="peso">Senha</label>
+          <input id="peso" type="number" name="peso" placeholder="Peso" [(ngModel)]="_peso" required>
+      </div>
+      <div class="input-box">
+        <label for="heroi">Selecione um Herói:</label>
+        <select class="heroi-selecao">
+          <option value="">Selecione um herói</option>
+          <option *ngFor="let superPoder of _SuperPoder$ | async" [value]="superPoder.poder">{{ superPoder.poder }}</option>
+        </select>
+    </div>
+
+      <div class="salvar-button">
+        <button (click)="SalvarHeroi()"><a href="#">Salvar</a> </button>
+     </div>
+     <div class="alterar-button">
+      <button (click)="AtualizarHeroi()">Alterar </button>
+   </div>
+   
+  </div>
+
+  </form>
+  
+  </div>
+  <div class="form-table">
+  
+   
+    
+    <table className="tabela">
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Nome do Herói</th>
+          <th>Data de Nascimento</th>
+          <th>Altura</th>
+          <th>Peso</th>
+          <th>Ação</th>
+
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let heroi of _heroi$ | async" (click)="ObterDadosHerois(heroi)">
+            <td>{{ heroi.nome }}</td>
+            <td>{{ heroi.nomeHeroi }}</td>
+            <td>{{ heroi.dataNascimento | date:'dd-mm-yyyy' }}</td>
+            <td>{{ heroi.altura }}</td>
+            <td>{{ heroi.peso }}</td>
+            <td><button className="excluir-button" (click)="DeletarHeroi()">Deletar</button></td>          
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+</div>
+
+
+ 
+<!-- 
+<p *ngFor="let _SuperPoder of _SuperPoder$ | async">
+  {{_SuperPoder.poder}}
+</p> -->
+<!-- 
+<button (click)="AtualizarHeroi()">Atualizar</button>
+
+<p></p> -->
+
+
+

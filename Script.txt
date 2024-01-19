@@ -1,0 +1,24 @@
+CREATE DATABASE Heroi 
+USE DATABASE Heroi
+CREATE TABLE Herois (
+    id INT IDENTITY(1,1) PRIMARY KEY,
+    Nome NVARCHAR(120) NOT NULL,
+    NomeHeroi NVARCHAR(120) NOT NULL,
+    DataNascimento DATETIME2(7) NOT NULL,
+    Altura FLOAT,
+    Peso FLOAT
+);
+
+CREATE TABLE Superpoderes (
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+    SuperPoder NVARCHAR(50) NOT NULL,
+    Descricao NVARCHAR(50) NOT NULL
+);
+
+CREATE TABLE HeroiSuperPoderes (
+    HeroiId INT,
+    SuperPoderId INT,
+    FOREIGN KEY (HeroiId) REFERENCES Herois(Id),
+    FOREIGN KEY (SuperPoderId) REFERENCES Superpoderes(Id),
+    PRIMARY KEY (HeroiId, SuperPoderId)
+);
